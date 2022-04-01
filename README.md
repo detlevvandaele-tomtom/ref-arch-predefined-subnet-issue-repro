@@ -42,7 +42,7 @@ However, due to the dependency graph between `modules.aks -> modules.networking`
 since we are referencing this value from the `data.azurerm_subnet.predefined_subnet` source.
 
 Due to the discrepancy in server-side generation of the value, but client-side requirements, Terraform can not interpret the state
-of this value, and safely assumes it might change.
+of this value, and safely assumes it might change whenever **any** value in the upstream module changes.
 
 Because of its very strict requirements in the `modules.aks.reference_architecture.azure_kubernetes_cluster` resource definition,
 any change to the `vnet_subnet_id` value forces a renewal of the entire cluster. This is defined, albeit vaguely, by the following note
