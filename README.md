@@ -30,3 +30,40 @@ Lines 12, 185 and 350 indicate this particular issue.
 
 However, it extends to any value that is read from a `data` source, that is managed by an upstream module,
 which can not be determined during the planning phase of the Terraform lifecycle
+
+## Proposed solutions
+
+This issue occurs because Terraform can not determine certain values until after a module has been applied.
+
+In this case, an `id` field for the `modules.networking.azurerm_subnet` resource is generated on the server side,
+therefore Terraform does not know whether it changed **before** the `apply` phase has completed.
+
+However, due to the dependency graph between `modules.aks -> modules.networking`, this value needs to be known during the `plan` phase,
+since we are referencing this value from the `data.azurerm_subnet.predefined_subnet` source.
+
+Due to the discrepancy in server-side generation of the value, but client-side requirements, Terraform can not interpret the state
+of this value, and safely assumes it might change.
+
+Because of its very strict requirements in the `modules.aks.reference_architecture.azure_kubernetes_cluster` resource definition,
+any change to the `vnet_subnet_id` value forces a renewal of the entire cluster. This is defined, albeit vaguely, by the following note
+in [the documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool#vnet_subnet_id):
+> NOTE:
+>
+> At this time the vnet_subnet_id must be the same for all node pools in the cluster
+
+and the fact that changes to a Node Pools affect the entire cluster, requiring recreation.
+
+### Require concrete input from the users for these values
+
+One way to alleviate this, is to require users to pass this `id` value directly from their own modules,
+rather than reading it from a data source.
+
+This requires the addition of an `id` field to the [`predefined_subnet` variable](https://github.com/tomtom-internal/reference-architecture/blob/d812c81ae0443a64d339c1e9995a9b92239998e6/azure/aks/variables.tf#L121)
+where users are required to already provide the correct id.
+This way, only when the ID changes, will the cluster (appropriately) be impacted.
+
+This method should also apply to **any** value that is currently derived from a data source (constructed from user-input), that is
+**essential** to the lifecycle of resources provided by the reference-architecture module, such as
+
+- [`azurerm_resource_group.rg` data source](https://github.com/tomtom-internal/reference-architecture/blob/d812c81ae0443a64d339c1e9995a9b92239998e6/azure/aks/main.tf#L12), derived from the [`existing_resource_group_name` variable](https://github.com/tomtom-internal/reference-architecture/blob/d812c81ae0443a64d339c1e9995a9b92239998e6/azure/aks/variables.tf#L109)
+  - Its output attribute `location` is used in the cluster definition, which is also an essential lifecycle-impacting variable
