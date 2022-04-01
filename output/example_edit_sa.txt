@@ -1,0 +1,437 @@
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # module.networking.azurerm_storage_account.example must be replaced
+-/+ resource "azurerm_storage_account" "example" {
+      ~ access_tier                       = "Hot" -> (known after apply)
+      ~ id                                = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/RG-weu-bs-dev-aks-test/providers/Microsoft.Storage/storageAccounts/akstestsatest" -> (known after apply)
+      + large_file_share_enabled          = (known after apply)
+      ~ name                              = "akstestsatest" -> "akstestsatres" # forces replacement
+      ~ primary_access_key                = (sensitive value)
+      ~ primary_blob_connection_string    = (sensitive value)
+      ~ primary_blob_endpoint             = "https://akstestsatest.blob.core.windows.net/" -> (known after apply)
+      ~ primary_blob_host                 = "akstestsatest.blob.core.windows.net" -> (known after apply)
+      ~ primary_connection_string         = (sensitive value)
+      ~ primary_dfs_endpoint              = "https://akstestsatest.dfs.core.windows.net/" -> (known after apply)
+      ~ primary_dfs_host                  = "akstestsatest.dfs.core.windows.net" -> (known after apply)
+      ~ primary_file_endpoint             = "https://akstestsatest.file.core.windows.net/" -> (known after apply)
+      ~ primary_file_host                 = "akstestsatest.file.core.windows.net" -> (known after apply)
+      ~ primary_location                  = "westeurope" -> (known after apply)
+      ~ primary_queue_endpoint            = "https://akstestsatest.queue.core.windows.net/" -> (known after apply)
+      ~ primary_queue_host                = "akstestsatest.queue.core.windows.net" -> (known after apply)
+      ~ primary_table_endpoint            = "https://akstestsatest.table.core.windows.net/" -> (known after apply)
+      ~ primary_table_host                = "akstestsatest.table.core.windows.net" -> (known after apply)
+      ~ primary_web_endpoint              = "https://akstestsatest.z6.web.core.windows.net/" -> (known after apply)
+      ~ primary_web_host                  = "akstestsatest.z6.web.core.windows.net" -> (known after apply)
+      ~ secondary_access_key              = (sensitive value)
+      + secondary_blob_connection_string  = (sensitive value)
+      + secondary_blob_endpoint           = (known after apply)
+      + secondary_blob_host               = (known after apply)
+      ~ secondary_connection_string       = (sensitive value)
+      + secondary_dfs_endpoint            = (known after apply)
+      + secondary_dfs_host                = (known after apply)
+      + secondary_file_endpoint           = (known after apply)
+      + secondary_file_host               = (known after apply)
+      ~ secondary_location                = "northeurope" -> (known after apply)
+      + secondary_queue_endpoint          = (known after apply)
+      + secondary_queue_host              = (known after apply)
+      + secondary_table_endpoint          = (known after apply)
+      + secondary_table_host              = (known after apply)
+      + secondary_web_endpoint            = (known after apply)
+      + secondary_web_host                = (known after apply)
+        tags                              = {
+            "environment" = "testing"
+        }
+        # (14 unchanged attributes hidden)
+
+      ~ blob_properties {
+          ~ change_feed_enabled      = false -> (known after apply)
+          + default_service_version  = (known after apply)
+          ~ last_access_time_enabled = false -> (known after apply)
+          ~ versioning_enabled       = false -> (known after apply)
+
+          + container_delete_retention_policy {
+              + days = (known after apply)
+            }
+
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          + delete_retention_policy {
+              + days = (known after apply)
+            }
+        }
+
+      + customer_managed_key {
+          + key_vault_key_id          = (known after apply)
+          + user_assigned_identity_id = (known after apply)
+        }
+
+      ~ network_rules {
+          ~ bypass                     = [
+              - "AzureServices",
+            ] -> (known after apply)
+          ~ default_action             = "Allow" -> (known after apply)
+          ~ ip_rules                   = [] -> (known after apply)
+          ~ virtual_network_subnet_ids = [] -> (known after apply)
+
+          + private_link_access {
+              + endpoint_resource_id = (known after apply)
+              + endpoint_tenant_id   = (known after apply)
+            }
+        }
+
+      ~ queue_properties {
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          ~ hour_metrics {
+              ~ enabled               = true -> (known after apply)
+              ~ include_apis          = true -> (known after apply)
+              ~ retention_policy_days = 7 -> (known after apply)
+              ~ version               = "1.0" -> (known after apply)
+            }
+
+          ~ logging {
+              ~ delete                = false -> (known after apply)
+              ~ read                  = false -> (known after apply)
+              ~ retention_policy_days = 0 -> (known after apply)
+              ~ version               = "1.0" -> (known after apply)
+              ~ write                 = false -> (known after apply)
+            }
+
+          ~ minute_metrics {
+              ~ enabled               = false -> (known after apply)
+              ~ include_apis          = false -> (known after apply)
+              ~ retention_policy_days = 0 -> (known after apply)
+              ~ version               = "1.0" -> (known after apply)
+            }
+        }
+
+      + routing {
+          + choice                      = (known after apply)
+          + publish_internet_endpoints  = (known after apply)
+          + publish_microsoft_endpoints = (known after apply)
+        }
+
+      ~ share_properties {
+          + cors_rule {
+              + allowed_headers    = (known after apply)
+              + allowed_methods    = (known after apply)
+              + allowed_origins    = (known after apply)
+              + exposed_headers    = (known after apply)
+              + max_age_in_seconds = (known after apply)
+            }
+
+          ~ retention_policy {
+              ~ days = 7 -> (known after apply)
+            }
+
+          + smb {
+              + authentication_types            = (known after apply)
+              + channel_encryption_type         = (known after apply)
+              + kerberos_ticket_encryption_type = (known after apply)
+              + versions                        = (known after apply)
+            }
+        }
+    }
+
+  # (config refers to values not yet known)
+ <= data "azurerm_kubernetes_service_versions" "current"  {
+      ~ id              = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/providers/Microsoft.ContainerService/locations/westeurope/orchestrators" -> (known after apply)
+      ~ latest_version  = "1.22.6" -> (known after apply)
+      ~ location        = "westeurope" -> (known after apply)
+      ~ versions        = [
+          - "1.20.13",
+          - "1.20.15",
+          - "1.21.7",
+          - "1.21.9",
+          - "1.22.4",
+          - "1.22.6",
+        ] -> (known after apply)
+        # (1 unchanged attribute hidden)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.aks.module.reference_architecture.data.azurerm_resource_group.rg[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "azurerm_resource_group" "rg"  {
+      ~ id       = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/RG-weu-bs-dev-aks-test" -> (known after apply)
+      ~ location = "westeurope" -> (known after apply)
+        name     = "RG-weu-bs-dev-aks-test"
+      ~ tags     = {} -> (known after apply)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.aks.module.reference_architecture.data.azurerm_subnet.predefined[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "azurerm_subnet" "predefined"  {
+      ~ address_prefix                                 = "10.0.4.0/22" -> (known after apply)
+      ~ address_prefixes                               = [
+          - "10.0.4.0/22",
+        ] -> (known after apply)
+      ~ enforce_private_link_endpoint_network_policies = false -> (known after apply)
+      ~ enforce_private_link_service_network_policies  = false -> (known after apply)
+      ~ id                                             = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/RG-weu-bs-dev-aks-test/providers/Microsoft.Network/virtualNetworks/aks-test-vnet/subnets/aks-test-subnet" -> (known after apply)
+        name                                           = "aks-test-subnet"
+      + network_security_group_id                      = (known after apply)
+      + route_table_id                                 = (known after apply)
+      ~ service_endpoints                              = [] -> (known after apply)
+        # (2 unchanged attributes hidden)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.aks.module.reference_architecture.data.azurerm_user_assigned_identity.kubelet_identity[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "azurerm_user_assigned_identity" "kubelet_identity"  {
+      ~ client_id           = "74d96b28-8d67-43eb-96f1-b0885cd7f8f8" -> (known after apply)
+      ~ id                  = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/MC_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aks-test-cluster-westeurope-agentpool" -> (known after apply)
+      ~ location            = "westeurope" -> (known after apply)
+        name                = "aks-test-cluster-westeurope-agentpool"
+      ~ principal_id        = "f1cb4619-8b35-4376-8002-a477799d670d" -> (known after apply)
+      ~ resource_group_name = "MC_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope_westeurope" -> (known after apply)
+      ~ tags                = {} -> (known after apply)
+      ~ tenant_id           = "374f8026-7b54-4a3a-b87d-328fa26ec10d" -> (known after apply)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.aks.module.reference_architecture.data.azurerm_virtual_network.predefined[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "azurerm_virtual_network" "predefined"  {
+      ~ address_space       = [
+          - "10.0.0.0/20",
+        ] -> (known after apply)
+      ~ dns_servers         = [] -> (known after apply)
+      ~ guid                = "35a2810f-2fab-46f7-840f-e38f029ae955" -> (known after apply)
+      ~ id                  = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/RG-weu-bs-dev-aks-test/providers/Microsoft.Network/virtualNetworks/aks-test-vnet" -> (known after apply)
+      ~ location            = "westeurope" -> (known after apply)
+        name                = "aks-test-vnet"
+      ~ subnets             = [
+          - "aks-test-subnet",
+        ] -> (known after apply)
+      ~ tags                = {} -> (known after apply)
+      ~ vnet_peerings       = {} -> (known after apply)
+        # (1 unchanged attribute hidden)
+
+      + timeouts {
+          + read = (known after apply)
+        }
+    }
+
+  # module.aks.module.reference_architecture.azurerm_kubernetes_cluster.k8s must be replaced
+-/+ resource "azurerm_kubernetes_cluster" "k8s" {
+      - api_server_authorized_ip_ranges     = [] -> null
+      ~ azure_policy_enabled                = false -> (known after apply)
+      - enable_pod_security_policy          = false -> null
+      ~ fqdn                                = "rg-weu-bs-dev-aks-test-westeurope-b273a3f2.hcp.westeurope.azmk8s.io" -> (known after apply)
+      ~ http_application_routing_enabled    = false -> (known after apply)
+      + http_application_routing_zone_name  = (known after apply)
+      ~ id                                  = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/RG-weu-bs-dev-aks-test/providers/Microsoft.ContainerService/managedClusters/aks-test-cluster-westeurope" -> (known after apply)
+      ~ kube_admin_config                   = [
+          - {
+              - client_certificate     = "<REDACTED>"
+              - client_key             = "<REDACTED>"
+              - cluster_ca_certificate = "<REDACTED>"
+              - host                   = "https://rg-weu-bs-dev-aks-test-westeurope-b273a3f2.hcp.westeurope.azmk8s.io:443"
+              - password               = "ddc29fbdefc55f8d7b52a8ddb9d5e5ce983d25cc68bba7202ecd744cd2f2dbf46dcccd367c2d623fde5195e6c88650edcb93a1c302406eec7f254c19b4609b83"
+              - username               = "clusterAdmin_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope"
+            },
+        ] -> (known after apply)
+      ~ kube_admin_config_raw               = (sensitive value)
+      ~ kube_config                         = [
+          - {
+              - client_certificate     = ""
+              - client_key             = ""
+              - cluster_ca_certificate = "<REDACTED>"
+              - host                   = "https://rg-weu-bs-dev-aks-test-westeurope-b273a3f2.hcp.westeurope.azmk8s.io:443"
+              - password               = ""
+              - username               = "clusterUser_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope"
+            },
+        ] -> (known after apply)
+      ~ kube_config_raw                     = (sensitive value)
+      ~ kubernetes_version                  = "1.22.6" -> (known after apply)
+      - local_account_disabled              = false -> null
+      ~ location                            = "westeurope" -> (known after apply) # forces replacement
+        name                                = "aks-test-cluster-westeurope"
+      ~ node_resource_group                 = "MC_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope_westeurope" -> (known after apply)
+      ~ open_service_mesh_enabled           = false -> (known after apply)
+      ~ portal_fqdn                         = "rg-weu-bs-dev-aks-test-westeurope-b273a3f2.portal.hcp.westeurope.azmk8s.io" -> (known after apply)
+      + private_dns_zone_id                 = (known after apply)
+      + private_fqdn                        = (known after apply)
+      ~ private_link_enabled                = false -> (known after apply)
+      ~ role_based_access_control_enabled   = true -> (known after apply)
+        tags                                = {
+            "environment" = "testing"
+        }
+        # (6 unchanged attributes hidden)
+
+      + aci_connector_linux {
+          + subnet_name = (known after apply)
+        }
+
+      ~ addon_profile {
+
+          ~ http_application_routing {
+              + http_application_routing_zone_name = (known after apply)
+                # (1 unchanged attribute hidden)
+            }
+
+          ~ oms_agent {
+              ~ oms_agent_identity = [] -> (known after apply)
+                # (1 unchanged attribute hidden)
+            }
+        }
+
+      ~ auto_scaler_profile {
+          ~ balance_similar_node_groups      = false -> (known after apply)
+          ~ empty_bulk_delete_max            = "10" -> (known after apply)
+          ~ expander                         = "random" -> (known after apply)
+          ~ max_graceful_termination_sec     = "600" -> (known after apply)
+          ~ max_node_provisioning_time       = "15m" -> (known after apply)
+          ~ max_unready_nodes                = 3 -> (known after apply)
+          ~ max_unready_percentage           = 45 -> (known after apply)
+          ~ new_pod_scale_up_delay           = "0s" -> (known after apply)
+          ~ scale_down_delay_after_add       = "10m" -> (known after apply)
+          ~ scale_down_delay_after_delete    = "10s" -> (known after apply)
+          ~ scale_down_delay_after_failure   = "3m" -> (known after apply)
+          ~ scale_down_unneeded              = "10m" -> (known after apply)
+          ~ scale_down_unready               = "20m" -> (known after apply)
+          ~ scale_down_utilization_threshold = "0.5" -> (known after apply)
+          ~ scan_interval                    = "10s" -> (known after apply)
+          ~ skip_nodes_with_local_storage    = false -> (known after apply)
+          ~ skip_nodes_with_system_pods      = true -> (known after apply)
+        }
+
+      ~ azure_active_directory_role_based_access_control {
+          ~ admin_group_object_ids = [] -> (known after apply)
+          ~ azure_rbac_enabled     = false -> (known after apply)
+          + client_app_id          = (known after apply)
+          ~ managed                = true -> (known after apply)
+          + server_app_id          = (known after apply)
+          + server_app_secret      = (sensitive value)
+          ~ tenant_id              = "374f8026-7b54-4a3a-b87d-328fa26ec10d" -> (known after apply)
+        }
+
+      ~ default_node_pool {
+          - fips_enabled                 = false -> null
+          ~ kubelet_disk_type            = "OS" -> (known after apply)
+            name                         = "default"
+          ~ node_labels                  = {} -> (known after apply)
+          ~ orchestrator_version         = "1.22.6" -> (known after apply)
+          ~ os_sku                       = "Ubuntu" -> (known after apply)
+            tags                         = {
+                "environment" = "testing"
+            }
+          ~ vnet_subnet_id               = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/RG-weu-bs-dev-aks-test/providers/Microsoft.Network/virtualNetworks/aks-test-vnet/subnets/aks-test-subnet" -> (known after apply) # forces replacement
+            # (15 unchanged attributes hidden)
+        }
+
+      ~ identity {
+          ~ principal_id = "84de6127-9638-4309-be8d-8b5ebb4d126f" -> (known after apply)
+          ~ tenant_id    = "374f8026-7b54-4a3a-b87d-328fa26ec10d" -> (known after apply)
+            # (1 unchanged attribute hidden)
+        }
+
+      + ingress_application_gateway {
+          + effective_gateway_id                 = (known after apply)
+          + gateway_id                           = (known after apply)
+          + gateway_name                         = (known after apply)
+          + ingress_application_gateway_identity = (known after apply)
+          + subnet_cidr                          = (known after apply)
+          + subnet_id                            = (known after apply)
+        }
+
+      + key_vault_secrets_provider {
+          + secret_identity          = (known after apply)
+          + secret_rotation_enabled  = (known after apply)
+          + secret_rotation_interval = (known after apply)
+        }
+
+      ~ kubelet_identity {
+          ~ client_id                 = "74d96b28-8d67-43eb-96f1-b0885cd7f8f8" -> (known after apply)
+          ~ object_id                 = "f1cb4619-8b35-4376-8002-a477799d670d" -> (known after apply)
+          ~ user_assigned_identity_id = "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/MC_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aks-test-cluster-westeurope-agentpool" -> (known after apply)
+        }
+
+      ~ network_profile {
+          + network_mode       = (known after apply)
+          + network_policy     = (known after apply)
+          + pod_cidr           = (known after apply)
+            # (6 unchanged attributes hidden)
+
+          ~ load_balancer_profile {
+              ~ effective_outbound_ips    = [
+                  - "/subscriptions/fb2ae5ad-b8e5-4893-adc7-b01e522aa9db/resourceGroups/MC_RG-weu-bs-dev-aks-test_aks-test-cluster-westeurope_westeurope/providers/Microsoft.Network/publicIPAddresses/ff1ac1e4-eeed-4684-a796-ef2bdd402077",
+                ] -> (known after apply)
+              ~ outbound_ip_address_ids   = [] -> (known after apply)
+              ~ outbound_ip_prefix_ids    = [] -> (known after apply)
+                # (3 unchanged attributes hidden)
+            }
+
+          + nat_gateway_profile {
+              + effective_outbound_ips    = (known after apply)
+              + idle_timeout_in_minutes   = (known after apply)
+              + managed_outbound_ip_count = (known after apply)
+            }
+        }
+
+      + oms_agent {
+          + log_analytics_workspace_id = (known after apply)
+          + oms_agent_identity         = (known after apply)
+        }
+
+      ~ role_based_access_control {
+            # (1 unchanged attribute hidden)
+
+          ~ azure_active_directory {
+              - admin_group_object_ids = [] -> null
+              - azure_rbac_enabled     = false -> null
+              ~ tenant_id              = "374f8026-7b54-4a3a-b87d-328fa26ec10d" -> (known after apply)
+                # (1 unchanged attribute hidden)
+            }
+        }
+
+      ~ windows_profile {
+          + admin_password = (sensitive value)
+          ~ admin_username = "azureuser" -> (known after apply)
+          + license        = (known after apply)
+        }
+    }
+
+Plan: 2 to add, 0 to change, 2 to destroy.
+╷
+│ Warning: Argument is deprecated
+│
+│   with module.aks.module.reference_architecture.azurerm_kubernetes_cluster.k8s,
+│   on .terraform/modules/aks.reference_architecture/azure/aks/main.tf line 88, in resource "azurerm_kubernetes_cluster" "k8s":
+│   88: resource "azurerm_kubernetes_cluster" "k8s" {
+│
+│ `addon_profile` block has been deprecated and will be removed in version 3.0 of the AzureRM Provider. All properties within the block will move to the top level.
+│
+│ (and 7 more similar warnings elsewhere)
+╵
